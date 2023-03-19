@@ -1,0 +1,35 @@
+<div style="display:flex;">      
+    <Span style="display:flex; padding: 30px 5px 0 5px; color:blueviolet; font-size:larger">Получатель:</Span>   
+        <select  id="maillist" class="sGoogleBtn" form="mail" name="group">
+            {{{maillist}}}
+        </select>            
+</div>
+
+<div style="display:inline; padding: 10px;">
+    
+    <table>
+        <tbody>
+                {{{jbody}}}
+        </tbody>
+    </table>
+    
+    <div>
+        <div class="Suma" id="divSuma" onload="SumaCalc()"></div>
+        <div class="SumaLabel">Сума: </div>      
+    </div>
+
+</div>
+
+<div>
+    <form action="/clearOrder" method="get" target="_blank">
+        <input type="hidden" value="1" name="clear">
+        <input type="submit" class="sGoogleBtn" value="Очистить Корзину">        
+    </form>    
+</div>
+
+<div>
+    <form id="mail" action="/sendMail" method="post" target="_blank">
+    <input type="submit" class="sGoogleBtn" value="Отправить">
+    </form>
+</div>
+

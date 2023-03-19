@@ -1,0 +1,12 @@
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  {{#if userName}}
+  <a href="/logout"><img class="circle" src="public/img/online.ico">{{userName}} </a>
+  {{else}}
+  <a href="/login"><img class="circle" src="public/img/offline.ico">Войти... </a>
+  {{/if}}  
+  <form action="#">
+     {{{radioGroup}}}   
+    <input type="hidden" id="seekNo" value="0">
+</form>
+</div> 

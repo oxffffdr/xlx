@@ -1,0 +1,205 @@
+
+<div id="gArea" class="GoogleFrameA" style="visibility: hidden;">    
+<img id="googCloseImg" class="CloseImg" src="/public/img/close.ico" size="24" onclick="closeGoogleArea()">
+<!-- <label for="googCloseImg"><img src="/public/img/Google.ico" width="128" height="24" ></label> -->
+<form id="form" onsubmit="return false;">
+  <!--  <input type="text" id="iGoogle" name="iGoogle"/>        -->
+</form>
+<div id="loder" style='visibility:hidden'>{{>loader}}</div>
+<div id="resMemo" class="GoogleArea"></div>
+<input id="GogFVis" type="hidden" value="0">
+<input type="hidden" id="basketCount" value="0">
+</div>
+
+
+<script type="text/javascript">
+
+
+//=========================== SHOW-HIDE HTML.elements =============================
+
+function ShowHideLoader(i){
+    if (i==1){
+        $('#loder').attr('style','visibility:visible')
+    } else {
+        $('#loder').attr('style','visibility:hidden')
+    }
+}
+
+ function showHidegArea(i){
+    $(function(){        
+    if (i=="1"){         
+            $('#gArea').attr('style','visibility:visible')
+            $('#GogFVis').val("1")        
+        }else{ 
+            $('#gArea').attr('style','visibility:hidden')
+            $('#GogFVis').val("0")        
+        }
+})}
+
+const ShowGoogleLine=()=>{        
+        if ($('#GogFVis').val()=="0"){
+           showHidegArea("1")
+        }else{
+            showHidegArea("0")
+        }    
+}
+
+const closeGoogleArea=()=>{    
+   showHidegArea("0")   
+}
+
+
+
+//======================== XHR ===================================
+
+const goooogle = async (kod) =>{              
+        $.ajax({
+            url: "/myGooogle",
+            type: "GET",
+            data: {
+                'sLine': kod                
+            },
+            success: function(data){
+                callBaskGoogle(data);
+            }
+        });    
+    }
+
+
+const tipRequest = async (tip) =>{              
+        $.ajax({
+            url: "/tip",
+            type: "GET",
+            data: {
+                'tip': tip                
+            },
+            success: function(data){
+                callBackTipData(data);
+            }
+        });    
+    }
+
+  
+const putToBasket = async (kod,kol,count) =>{              
+        $.ajax({
+            url: "/putToBasket",
+            type: "GET",
+            data: {
+                'kod': kod,
+                'kol': kol,
+                'count': count
+            },
+            success: function(data){
+                callBackputToBasket(data);
+            }
+        });    
+    }
+
+const sendMail = async () =>{              
+        $.ajax({
+            url: "/sendMail",
+            type: "POST",
+            data: {
+                'mail_to': 'mail',                
+            },
+            success: function(data){
+                callBackSendMail(data);
+            fail: () =>{alert("Ошибка. Почта не отправлена...")}
+            }
+        });    
+    }
+
+
+//============================ CALL-BACK ================================
+
+const callBaskGoogle=(data)=>{
+      $('#resMemo').html(data.Result)      
+   }
+
+
+const callBackTipData=(data)=>{
+      $('#resMemo').html(data.Result)      
+   }
+
+const callBackputToBasket = (data)=>{
+    $('#basketPoints').html(data.Result)     
+    $('#basketCount').val(data.Result)     
+};
+
+const callBackSendMail = (data)=>{
+    alert('Почта отправлена...')
+}
+
+//==========================  USER HTML PROCS====================================
+
+
+function SumaCalc(){
+    var k=Number(0);
+    var trs = document.getElementsByTagName("tr").length;    
+    for (var i=1;i<trs;i++){
+        var td = document.getElementById('suma'+i);       
+        if (td) {                
+            k=k+Number(td.innerText)        
+            }
+    }
+    document.getElementById('divSuma').innerText = k;        
+}
+
+function reNumerate(){
+    var k=Number(1);
+    var trs = document.getElementsByTagName("tr").length;    
+    for (var i=1;i<trs;i++){
+    var td = document.getElementById('no'+i);       
+    if (td) {                
+        td.innerText = k        
+        k++;
+    }
+    }
+}
+
+function delItem(id){  
+    document.getElementById(id).remove()    
+    reNumerate()
+    SumaCalc()
+}
+
+const SearchLikeGoogle=(e)=>{   
+    if (e.code == "Space"){               
+       $('#resMemo').text("")       
+       var iG = document.getElementById("sGoogle")
+       const proc = async () =>{       
+       await goooogle(iG.value)       
+       showHidegArea(1); 
+       }
+       return proc().then(r=>{return r})
+   }
+  }
+
+
+function tipSelect() {
+    var tip = document.getElementById("tip")        
+    const proc = async () =>{       
+       await  tipRequest(tip.value)
+       showHidegArea(1); 
+       }
+       return proc().then(r=>{return r})
+}
+
+function basketClick(kod){    
+    var kol = document.getElementById("i"+kod).value
+    if (kol=="") { alert("Ввведите значение")}
+    else {
+    document.getElementById("tr"+kod).setAttribute("style","color: red")
+    var count = document.getElementById("basketCount").value
+    const proc = async () =>{       
+       await  putToBasket(kod,kol,count)       
+       }
+       return proc().then(r=>{return r})
+    }
+}
+
+//=======================================================================
+
+    var sG = document.getElementById("sGoogle")      
+    sG.onkeydown = sG.onkeyup = sG.onkeypress = SearchLikeGoogle 
+</script> 

@@ -1,0 +1,32 @@
+<script>
+    function openFileDlg (){
+    const fileInput = document.getElementById('fileInput');
+    const selectedFile = fileInput.files[0];
+    const formData = new FormData();        
+    formData.append('file', selectedFile);                
+
+        //console.log(formData);
+        fetch('/upload', {
+            method: 'POST',
+            body: formData,
+            enctype: "multipart/form-data"
+        })
+            .then(response => {
+                    console.log('File uploaded successfully!');
+                    document.getElementById('seexls').setAttribute("style","visibility: visible");
+                    window.location.href="/xls"
+                    
+            })
+            .catch(error => {
+                    console.error('Error uploading file:', error);
+        });
+}
+</script>
+
+
+<div>
+        <input type="file" id="fileInput">     
+        <input type="button" value ="Upload File" onclick="openFileDlg()">   
+        <a id="seexls" href="/xls" style="visibility: visible">File Uploaded...</a>
+</div>
+

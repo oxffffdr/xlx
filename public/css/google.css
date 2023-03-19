@@ -1,0 +1,84 @@
+﻿
+ .GoogleFrameA
+{
+ position:absolute;
+ z-index: 9999;
+ left: 18%;
+ height:auto;
+ margin: auto;
+ padding: 10px 0 1px 10px;
+ width: 75%; 
+ text-align:left;
+ background-color: #5166d9;
+ font-size : x-large;
+ font-family: Tahoma;
+ color: White;
+ text-shadow: 0 1px 1px rgba(0,0,0,0.9);
+ margin-bottom: 5px;
+ margin-top: 15px;
+ padding-bottom: 8px;
+ padding-top: 8px;
+ box-shadow: 5px 0px 30px #000;
+ border-radius: 8px;
+} 
+
+.GoogleForm
+{
+	height:auto;
+}
+
+
+.GoogleArea
+{
+	width: 70%;
+	margin:auto;	
+	margin-top: 5px;
+	font-family: Courier New;
+	text-align: left;
+	font-size:medium;
+	color: White;
+	text-shadow: 0 1px black;
+}
+
+
+.iGoogle
+{
+	width: 54%;
+	height: 40px;	
+	
+	margin:left;
+	padding: 2px 5px 2px 5px;
+	font-family: Tahoma;
+	font-size: xx-large;
+	font-weight: 600;
+	color:rgb(233, 241, 241);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+	
+.GoogleImg
+{	
+	margin-left: 30px;	
+	padding-right: 5px;
+}
+
+.GoogleDIV
+{
+	  margin-top: 10px;
+	   margin-bottom:10px;
+	   margin-left: 1%;
+}
+.ClearImg
+{
+	width: 36px;
+	height: 21px;
+	padding-left: 10px;
+}
+
+.CloseImg
+{
+ position:absolute;
+ right:10px;
+ width: 38px;
+ height: 25px;
+ padding-right: 10px;
+}
