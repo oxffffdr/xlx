@@ -20,7 +20,7 @@ const sendMailTo = async (group,body) =>{
         service: 'gmail',
         auth: {
           user: 'oxffffdr@gmail.com',
-          pass: 'stufwapiqjqpaetq'
+          pass: '--'
         }
       });          
     var msg = CrateMailMsg(list,body)
