@@ -6,7 +6,7 @@ const config =  {
         secure: true, // true for 465, false for othergit ports 587
         auth: {
         	  user: 'oxffffgt@gmail.com',
-	          pass: "space12star"
+	          pass: "--------"
               }
             },
 	mongoUri: "mongodb+srv://admin:1a2b3c@cluster0.uud24.mongodb.net/NasaServer",
